@@ -1,5 +1,9 @@
-const {app} =require('../index.js')
+const {app}=require('../index')
+const http=require('http')
+const server=http.createServer(app.callback())
 
-app.listen(8020,()=>{
-    console.log('server is running at port 8020')
+let port=process.env.PORT||8000
+
+server.listen(port,()=>{
+    console.log(`server is running at port ${port}`)
 })

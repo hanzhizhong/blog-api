@@ -1,0 +1,8 @@
+const {resolve}=require('path')
+
+module.exports={
+    "config":resolve(__dirname,'config/database.json'),
+    "migrations-path":resolve(__dirname,'db/mysql/migrations'),
+    "models-path":resolve(__dirname,"db/mysql/models"),
+    "seeders-path":resolve(__dirname,"db/mysql/seeders")
+}

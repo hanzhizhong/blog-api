@@ -1,33 +1,25 @@
-const express=require('express')
-const app=express()
-const bodyParser=require('body-parser')
-const session=require('express-session')
-const {ErrorInfoModel}=require('./utils/answer')
-//导入路由模块
-const userRouter=require('./router/users')
-const blogRouter=require('./router/blogs')
+const Koa=require('koa')
+const app=new Koa()
 
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
-//配置session 
-app.use(session({
-    secret:'nothing seek,nothing find',
-    name:'blogs_id',
-    resave:false,
-    saveUninitialized:true,
-    cookies:{
-        maxAge:60*60*1000
+const Router=require('koa-router')
+const router=new Router()
+const parameter=require('koa-parameter')
+const jsonError=require('koa-json-error')
+
+const userRouter=require('./router/user')
+//const blogRouter=require('./router/blog')
+
+app.use(jsonError({
+    postFormat:(e,{stack,...rest})=>{
+        return process.en.NODE_ENV==='production'?rest:{stack,...rest}
     }
 }))
+app.use(parameter(app))
 
+router.use(userRouter.routes())
+//router.use()
 
-app.use('/api/users',userRouter)
-app.use('/api/blogs',blogRouter)
+app.use(router.routes())
+app.use(router.allowedMethods())
 
-app.use((req,res)=>{
-    res.json(new ErrorInfoModel('page not found',404))
-})
-
-module.exports={
-    app
-}
+module.exports={app};
