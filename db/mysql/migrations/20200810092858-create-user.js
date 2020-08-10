@@ -29,13 +29,15 @@ module.exports = {
         type:Sequelize.DATE,
         defaultValue:new Date()
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:new Date(Date.now())
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue:new Date(Date.now())
       }
     });
   },
