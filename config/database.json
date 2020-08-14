@@ -2,10 +2,10 @@
   "development": {
     "username": "root",
     "password": "123456",
-    "database": "blog_dev",
+    "database": "blog_dev2",
     "host": "172.16.4.212",
     "dialect": "mysql",
-    "zonetime":"+08:00"
+    "timezone":"+08:00"
   },
   "test": {
     "username": "root",

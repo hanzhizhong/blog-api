@@ -11,14 +11,39 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Blog,{
+        foreignKey:"user_id"
+      })
     }
   };
   User.init({
-    username: DataTypes.STRING
+    username: {
+      type:DataTypes.STRING,
+      allowNull:false
+    },
+    passwd:{
+      type:DataTypes.STRING,
+      allowNull:false 
+    },
+    gender:{
+      type:DataTypes.ENUM,
+      values:['none','female','male'],
+      defaultValue:'none'
+    },
+    nickname:{
+      type:DataTypes.STRING
+    },
+    birthday:{
+      type:DataTypes.DATE,
+      defaultValue:new Date(1970,5,23) 
+    },
   }, {
     sequelize,
-    modelName: 'user',
-    tableName:"users"
+    modelName: 'User',
+    tableName:"users",
+    timestamps:true,
+    createdAt:"created_at",
+    updatedAt:"updated_at"
   });
   return User;
 };
