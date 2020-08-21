@@ -63,7 +63,7 @@ module.exports = {
       },
     ])
 
-    await queryInterface.bulkInsert('likes',[
+    /* await queryInterface.bulkInsert('likes',[
       {blog_id:1,user_id:1},
       {blog_id:1,user_id:2},
       {blog_id:2,user_id:3},
@@ -77,7 +77,7 @@ module.exports = {
       {blog_id:1,user_id:2,content:"毫无新意的评论2"},
       {blog_id:1,user_id:4,content:"毫无新意的评论3"},
       {blog_id:1,user_id:5,content:"毫无新意的评论4"},
-    ])
+    ]) */
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -8,8 +8,9 @@ const parameter=require('koa-parameter')
 const jsonError=require('koa-json-error')
 
 const userRouter=require('./router/user')
-//const blogRouter=require('./router/blog')
-
+const blogRouter=require('./router/blog')
+const likeRouter=require('./router/like')
+const replyRouter=require('./router/reply')
 app.use(jsonError({
     postFormat:(e,{stack,...rest})=>{
         return process.env.NODE_ENV==='production'?rest:{stack,...rest}
@@ -19,7 +20,9 @@ app.use(koaBody())
 app.use(parameter(app))
 
 router.use(userRouter.routes())
-//router.use()
+router.use(blogRouter.routes())
+router.use(likeRouter.routes())
+router.use(replyRouter.routes())
 
 app.use(router.routes())
 app.use(router.allowedMethods())

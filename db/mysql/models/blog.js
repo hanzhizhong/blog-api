@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Blog.belongsTo(models.User,{foreignKey:"user_id",as:"users"})
     }
   };
   Blog.init({
@@ -24,6 +25,16 @@ module.exports = (sequelize, DataTypes) => {
     user_id:{
       type:DataTypes.INTEGER,
       allowNull:false
+    },
+    likes_count:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      defaultValue:0
+    },
+    replies_count:{
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      defaultValue:0
     }
   }, {
     sequelize,
