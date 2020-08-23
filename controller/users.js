@@ -55,10 +55,12 @@ class UserController{
         }
     }
     async list(cxt){
-        cxt.body={
-            data:await User.findAll({attributes:{exclude:['passwd']},limit:3,offset:3}),
-            total:await User.count('id')
-        };
+        let {pageIndex=1,pageSize=5}=cxt.query;
+        cxt.body=await User.findAndCountAll({
+            limit:Number(pageSize),
+            offset:Math.max(0,(pageIndex-1)*pageSize),
+            attributes:{exclude:['passwd']}
+        })
     }
     async listById(cxt){
         cxt.body=await User.findOne({where:cxt.params,attributes:{exclude:['passwd']}})

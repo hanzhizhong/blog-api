@@ -2,8 +2,8 @@
   "development": {
     "username": "root",
     "password": "123456",
-    "database": "blog_dev2",
-    "host": "172.16.4.212",
+    "database": "blog_dev",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "timezone":"+08:00"
   },
